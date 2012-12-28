@@ -11,7 +11,7 @@ class Gelf extends Base
 
     public function __construct($facility = null) {
         if (!is_null($facility)) {
-            $this->facility = (string) $format;
+            $this->facility = (string) $facility;
         }
     }
 
