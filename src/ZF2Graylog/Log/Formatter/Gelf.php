@@ -56,8 +56,8 @@ class Gelf extends Base
         $message->setTimestamp($timestamp);
 
         foreach ($event as $k => $v) {
-            if (!in_array($k, ['message', 'priority', 'errno', 'full', 'short',
-                'file', 'line', 'version', 'facility', 'timestamp'])) {
+            if (!in_array($k, array( 'message', 'priority', 'errno', 'full', 'short',
+                'file', 'line', 'version', 'facility', 'timestamp') )) {
                 $message->setAdditional($k, $v);
             }
         }
