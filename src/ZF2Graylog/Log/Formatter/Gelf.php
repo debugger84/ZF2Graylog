@@ -21,6 +21,7 @@ class Gelf extends Base
      * @return GELFMessage
      */
     public function format($event) {
+
         $message = new GELFMessage;
 
         $message->setHost(gethostname());
@@ -57,9 +58,12 @@ class Gelf extends Base
 
         foreach ($event as $k => $v) {
             if (!in_array($k, array( 'message', 'priority', 'errno', 'full', 'short',
-                'file', 'line', 'version', 'facility', 'timestamp') )) {
+                'file', 'line', 'version', 'facility', 'timestamp', 'extra') )) {
                 $message->setAdditional($k, $v);
             }
+        }
+        foreach ( $event['extra'] as $k => $v ) {
+            $message->setAdditional($k, $v);
         }
 
         return $message;
