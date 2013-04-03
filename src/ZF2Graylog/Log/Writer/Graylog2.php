@@ -18,7 +18,7 @@ class Graylog2 extends AbstractWriter
         $this->formatter = new \ZF2Graylog\Log\Formatter\Gelf($facility);
     }
 
-    public function setFormatter(FormatterInterface $formatter)
+    public function setFormatter($formatter)
     {
     }
 
