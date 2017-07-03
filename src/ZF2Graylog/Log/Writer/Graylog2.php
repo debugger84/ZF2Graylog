@@ -6,6 +6,7 @@ use Gelf\MessageValidator;
 use Gelf\Publisher;
 use Gelf\Transport\AbstractTransport;
 use \Zend\Log\Writer\AbstractWriter;
+use ZF2Graylog\Log\Formatter\Gelf;
 
 class Graylog2 extends AbstractWriter
 {
@@ -24,12 +25,12 @@ class Graylog2 extends AbstractWriter
         $messageValidator = new MessageValidator();
 
         $this->setPublisher(new Publisher($transport, $messageValidator));
-        $this->setFormatter(new GraylogFormatter($facility));
+        $this->setFormatter(new Gelf($facility));
     }
 
     public function setFormatter($formatter)
     {
-        if (!($formatter instanceof GraylogFormatter)) {
+        if (!($formatter instanceof Gelf)) {
             throw new \RuntimeException('Wrong formatter for graylog logger');
         }
         $this->formatter = $formatter;

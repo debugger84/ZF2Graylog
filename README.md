@@ -6,7 +6,7 @@ application, using [bzikarsky/gelf-php][gelf-php]: the newer version of deprecat
 ## Install
 
 ```
-composer install "debugger84/zf2-graylog"
+composer require debugger84/zf2-graylog:dev-master
 ```
 
 ## Usage
