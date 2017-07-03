@@ -18,6 +18,7 @@
         }
     },
     "require": {
+        "zendframework/zend-log": "^2.9",
         "graylog2/gelf-php": "^1.5"
     }
 }

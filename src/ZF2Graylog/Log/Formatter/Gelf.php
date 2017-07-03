@@ -2,8 +2,8 @@
 
 namespace ZF2Graylog\Log\Formatter;
 
+use Gelf\Message;
 use \Zend\Log\Formatter\Base;
-use \GELFMessage;
 
 class Gelf extends Base
 {
@@ -18,11 +18,11 @@ class Gelf extends Base
     /**
      * Returns a GELFMessage instance to be used with a GELFMessagePublisher
      *
-     * @return GELFMessage
+     * @return Message
      */
     public function format($event) {
 
-        $message = new GELFMessage;
+        $message = new Message();
 
         $message->setHost(gethostname());
 

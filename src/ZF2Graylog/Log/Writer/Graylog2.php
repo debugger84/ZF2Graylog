@@ -2,27 +2,52 @@
 
 namespace ZF2Graylog\Log\Writer;
 
+use Gelf\MessageValidator;
+use Gelf\Publisher;
+use Gelf\Transport\AbstractTransport;
 use \Zend\Log\Writer\AbstractWriter;
-use \Zend\Log\Formatter\FormatterInterface;
-
-use \GELFMessagePublisher;
 
 class Graylog2 extends AbstractWriter
 {
+    /**
+     * @var Publisher
+     */
     private $publisher;
+
+    /**
+     * @var \ZF2Graylog\Log\Formatter\Gelf
+     */
     protected $formatter;
 
-    public function __construct($facility, $hostname, $port = GELFMessagePublisher::GRAYLOG2_DEFAULT_PORT) {
-        $this->publisher = new GELFMessagePublisher($hostname, $port);
+    public function __construct($facility, AbstractTransport $transport)
+    {
+        $messageValidator = new MessageValidator();
 
-        $this->formatter = new \ZF2Graylog\Log\Formatter\Gelf($facility);
+        $this->setPublisher(new Publisher($transport, $messageValidator));
+        $this->setFormatter(new GraylogFormatter($facility));
     }
 
     public function setFormatter($formatter)
     {
+        if (!($formatter instanceof GraylogFormatter)) {
+            throw new \RuntimeException('Wrong formatter for graylog logger');
+        }
+        $this->formatter = $formatter;
     }
 
-    public function doWrite(array $event) {
+    /**
+     * @param Publisher $publisher
+     * @return $this
+     */
+    public function setPublisher(Publisher $publisher)
+    {
+        $this->publisher = $publisher;
+        return $this;
+    }
+
+
+    public function doWrite(array $event)
+    {
         $message = $this->formatter->format($event);
         $this->publisher->publish($message);
     }
