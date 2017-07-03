@@ -4,4 +4,8 @@ return array(
         'factories' => array(
         ),
     ),
+    'graylog' => [
+        'host' => '',
+        'port' => '',
+    ],
 );

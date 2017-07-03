@@ -9,6 +9,22 @@ application, using [bzikarsky/gelf-php][gelf-php]: the newer version of deprecat
 composer require debugger84/zf2-graylog:dev-master
 ```
 
+Add values of graylog connection to your config
+ 
+```
+    'graylog' => [
+        'host' => 'http://graylog.local',
+        'port' => 12222,
+        'facility' => 'Your project name'
+    ],
+```
+
+Rewrite factory for Zend Logger interface
+
+```
+\Zend\Log\LoggerInterface::class => \ZF2Graylog\Factory\LoggerFactory::class,
+```
+
 ## Usage
 
 I added a method to a custom base controller:
