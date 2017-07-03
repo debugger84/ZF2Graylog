@@ -2,19 +2,21 @@
 namespace ZF2Graylog\Factory;
 
 use Gelf\Transport\UdpTransport;
-use Interop\Container\ContainerInterface;
 use Zend\Log\Exception\RuntimeException;
 use Zend\Log\Logger;
 use ZF2Graylog\Log\Writer\Graylog2;
+use Zend\ServiceManager\FactoryInterface;
+use Zend\ServiceManager\ServiceLocatorInterface;
 
-class LoggerFactory
+class LoggerFactory implements FactoryInterface
 {
     /**
-     * @param ContainerInterface $container
-     * @return Logger
-     * @throws RuntimeException
+     * Create service
+     *
+     * @param ServiceLocatorInterface $container
+     * @return mixed
      */
-    public function __invoke(ContainerInterface $container)
+    public function createService(ServiceLocatorInterface $container)
     {
         $config = $container->get('Config');
         if (!isset($config['graylog']['host']) || !isset($config['graylog']['port'])) {
