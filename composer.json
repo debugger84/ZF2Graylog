@@ -18,7 +18,7 @@
         }
     },
     "require": {
-        "zendframework/zendframework": "2.4",
+        "zendframework/zendframework": "^2.4",
         "psr/container": "^1.0",
         "graylog2/gelf-php": "^1.5"
     }
