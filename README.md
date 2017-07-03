@@ -1,14 +1,13 @@
 # Graylog2 for Zend Framework 2
 
 A `Zend\Log` writer and formatter helps you add Graylog logging to your ZF2
-application, using [Graylog2/gelf-php][gelf-php].
+application, using [bzikarsky/gelf-php][gelf-php]: the newer version of deprecated [Graylog2/gelf-php][gelf-php] library.
 
 ## Install
 
-Composer install todo. If you know how to install a ZF2 module the manual way
-(by adding to `vendor/composer/autoload_*.php`, etc.) then you can do that.
-
-Ensure that [Graylog2/gelf-php][gelf-php] is on the `include_path` as well.
+```
+composer install "debugger84/zf2-graylog"
+```
 
 ## Usage
 

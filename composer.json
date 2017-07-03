@@ -1,15 +1,15 @@
 {
-    "name": "rmasters/zf2-graylog",
+    "name": "debugger84/zf2-graylog",
     "description": "A Zend\\Log writer and formatter helps you add Graylog logging to your ZF2 application.",
     "keywords": [ "log", "logging", "zf2" ],
-    "homepage": "https://github.com/rmasters/ZF2Graylog",
+    "homepage": "https://github.com/debugger84/ZF2Graylog",
     "type": "library",
     "license": "MIT",
     "authors": [
         {
-            "name": " Ross Masters",
-            "email": "ross@rossmasters.com",
-            "homepage": "https://github.com/rmasters"
+            "name": " Andrey Yanakov",
+            "email": "yanak1984@gmail.com",
+            "homepage": "https://github.com/debugger84"
         }
     ],
     "autoload": {
@@ -18,6 +18,6 @@
         }
     },
     "require": {
-        "graylog2/gelf-php": "dev-master"
+        "graylog2/gelf-php": "^1.5"
     }
 }
