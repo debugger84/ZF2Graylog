@@ -2,6 +2,7 @@
 namespace ZF2Graylog\Factory;
 
 use Gelf\Transport\UdpTransport;
+use Gelf\Transport\TcpTransport;
 use Interop\Container\ContainerInterface;
 use Zend\Log\Exception\RuntimeException;
 use Zend\Log\Logger;
@@ -23,6 +24,7 @@ class LoggerFactory
 
         $host = $config['graylog']['host'];
         $port = $config['graylog']['port'];
+        $protocol = $config['graylog']['protocol'];
         $facility = 'ZF 2 Graylog logger';
         if (isset($config['graylog']['facility'])) {
             $facility = $config['graylog']['facility'];
@@ -31,17 +33,22 @@ class LoggerFactory
             throw new RuntimeException('Не задан хост логгера Graylog');
         }
 
-        return $this->getGraylogLogger($host, $port, $facility);
+        return $this->getGraylogLogger($host, $port, $facility, $protocol);
     }
 
 
     /**
      * @return Logger
      */
-    private function getGraylogLogger($hostname, $port, $facility)
+    private function getGraylogLogger($hostname, $port, $facility, $protocol)
     {
         $logger = new Logger();
-        $transport = new UdpTransport($hostname, $port);
+        if ('TCP' == $protocol) {
+            $transport = new TcpTransport($hostname, $port);
+        }
+        else {
+            $transport = new UdpTransport($hostname, $port);
+        }
 
         $writer = new Graylog2($facility, $transport);
         $logger->addWriter($writer);
