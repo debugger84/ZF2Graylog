@@ -7,5 +7,6 @@ return array(
     'graylog' => [
         'host' => '',
         'port' => '',
+        'protocol' => '',
     ],
 );
